@@ -5,6 +5,9 @@ customCss.innerHTML = `
   .StoplightContainer, .ScrollableArea, .TeamSelector-addArea {
     background-color: white !important;
   }
+  .TeamSidebar-addArea {
+    background: transparent !important;
+  }
 `;
 
 var x = document.querySelector('#customCss');
