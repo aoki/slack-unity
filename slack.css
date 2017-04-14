@@ -1,0 +1,141 @@
+
+
+package.jsonに書かれてるのは
+electron-compile ^4.0.0
+npm i electron-compile -g
+
+```
+❯ electron-compile /tmp/.
+Using NODE_ENV = development
+Couldn't set up compilers: Electron compilers not found but were requested to be loaded
+Electron compilers not found but were requested to be loaded
+Compilation failed!
+For extra information, set the DEBUG environment variable to '*'
+```
+
+https://slack.engineering/using-es2015-with-electron-introducing-electron-compile-2a0e5ccbadb6#.kelxo98ik
+:thinking:
+
+/*npm i -g electron-prebuilt-compile*/
+npm i -g electron-compilers
+
+NODE_ENV=production electron-compile .
+
+```
+Uncaught Exception:
+Error: Module version mismatch. Expected 49, got 48.
+    at Error (native)
+    at process.module.(anonymous function) [as dlopen] (ELECTRON_ASAR.js:168:20)
+```
+$(npm bin)/electron-rebuild
+```
+make: *** No rule to make target `Release/obj.target/gc/src/gc.o', needed by `Release/gc.node'.  Stop.
+gyp ERR! build error
+gyp ERR! stack Error: `make` failed with exit code: 2
+gyp ERR! stack     at ChildProcess.onExit (/private/tmp/slack/node_modules/npm/node_modules/node-gyp/lib/build.js:276:23)
+gyp ERR! stack     at emitTwo (events.js:106:13)
+gyp ERR! stack     at ChildProcess.emit (events.js:191:7)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:12)
+gyp ERR! System Darwin 15.6.0
+gyp ERR! command "/Users/yoshiki_aoki/.nodebrew/node/v6.9.1/bin/node" "/private/tmp/slack/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "rebuild"
+gyp ERR! cwd /private/tmp/slack/node_modules/@paulcbetts/gc
+gyp ERR! node -v v6.9.1
+gyp ERR! node-gyp -v v3.4.0
+gyp ERR! not ok
+```
+package.jsonの中にnode >=7.0 の記述あり
+node use 7.0.0
+
+
+var customCss = document.createElement('style');
+customCss.type = 'text/css';
+customCss.id = 'customCss';
+customCss.innerHTML = `
+  * {
+    transition: all 0.3s;
+  }
+  .message_body {
+      font-family: 'SFNS Display', 'Hiragino Sans';
+      line-height: 1.5em;
+      font-size: 0.9em;
+  }
+  .msg_inline_img_holder .msg_inline_img {
+    box-shadow: none;
+  }
+  #client_body:not(.onboarding):before {
+    /* border-bottom: .0625rem solid #e8e8e8; */
+    border-bottom: 0;
+  }
+  #messages-input-container #message-input {
+    border: none;
+    border-radius: 0 0 0 0;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  #primary_file_button {
+    /*border: 1px solid #e0e0e0;*/
+    /*border-radius: 50%;*/
+    border: none;
+  }
+
+  #team_menu.hideChannelBar {
+    background: white !important;
+    border-bottom: none !important;
+  }
+  #team_menu.hideChannelBar,
+  #team_header_user_name.hideChannelBar,
+  #team_menu>.notifications_menu_btn.hideChannelBar {
+    color: black !important;
+  }
+`;
+
+var x = document.querySelector('#customCss');
+if (x === null || typeof x === 'undefined') {
+  document.getElementsByTagName('head').item(0).appendChild(customCss);
+}
+/*else {
+  x.parentNode.removeChild(x);
+}*/
+
+window.onkeydown = function(event) {
+  if(event.ctrlKey && event.keyCode == 220) {
+    console.log('Toggle!');
+    if (document.getElementById('col_channels').style.display !== 'none'){
+      console.log('Enable CSS!');
+      document.getElementById('footer').style.left = '0';
+      document.getElementById('messages_container').style['margin-left'] = '0';
+      document.getElementById('col_channels_bg').style.display = 'none';
+      document.getElementById('col_channels_overlay').style.display = 'none';
+      document.getElementById('col_channels').style.display = 'none';
+      /*document.getElementById('team_menu').classList.add('hideChannelBar');
+      document.getElementById('team_header_user_name').add('hideChannelBar');
+      document.getElementsByClassName('notifications_menu_btn')[0].add('hideChannelBar');*/
+    } else {
+      console.log('Disable CSS!');
+      document.getElementById('footer').style.left = '220px';
+      document.getElementById('messages_container').style['margin-left'] = '220px';
+      document.getElementById('col_channels_bg').style.display = '';
+      document.getElementById('col_channels_overlay').style.display = '';
+      document.getElementById('col_channels').style.display = '';
+      /*document.getElementById('team_menu').classList.remove('hideChannelBar');
+      document.getElementById('team_header_user_name').remove('hideChannelBar');
+      document.getElementsByClassName('notifications_menu_btn')[0].remove('hideChannelBar');*/
+    }
+  }
+}
+
+
+
+
+#col_channels_bg,
+#col_channels_overlay,
+#col_channels {
+  display: none;
+}
+
+#messages_container {
+  margin-left: 0;
+}
+
+#footer {
+  left: 0;
+}

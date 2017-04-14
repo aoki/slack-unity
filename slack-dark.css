@@ -1,0 +1,44 @@
+var customCss = document.createElement('style');
+customCss.type = 'text/css';
+customCss.id = 'darkmode';
+customCss.innerHTML = `
+
+  .day_msgs, .channel_header,
+  #col_messages, #footer,
+  #messages-input-container #message-input,
+  #primary_file_button,
+  div#client-ui {
+    background-color: #303E4D !important;
+  }
+  .day_msgs, .channel_header, .message_body,
+  #col_messages, #footer, .message_sender,
+  #channel_title,
+  .light_theme ts-message .message_content .message_sender,
+  #messages-input-container #message-input,
+  #primary_file_button {
+    color: #ACB1B7 !important;
+  }
+
+  #messages-input-container #message-input {
+    border-top: 1px solid #303E4D;
+  }
+  #messages-input-container #message-input:focus {
+    border-top: 1px solid RGBA(172, 177, 183, 0.3);
+  }
+
+  ts-message:hover {
+    background-color: #414F5E !important;
+    color: white !important;
+  }
+
+  input#search_terms {
+    background-color: #303E4D;
+  }
+
+  .supports_custom_scrollbar #archive_msgs_scroller_div::-webkit-scrollbar-track, .supports_custom_scrollbar #msgs_scroller_div::-webkit-scrollbar-track,
+  .supports_custom_scrollbar #messages_container:after {
+    background-color: none;
+  }
+
+`;
+document.getElementsByTagName('head').item(0).appendChild(customCss);

@@ -62,14 +62,14 @@ customCss.innerHTML = `
     /* border-bottom: .0625rem solid #e8e8e8; */
     border-bottom: 0;
   }
-  textarea#msg_input {
+  div#msg_input {
     font-size: 0.9em !important;
     border: none !important;
     border-radius: 0 0 0 0 !important;
     border-bottom: 1px solid #E0E0E0 !important;
   }
-  textarea#msg_input:focus,
-  textarea#msg_input:hover {
+  div#msg_input:focus,
+  div#msg_input:hover {
     border-top: none !important;
     border-color: #439fe0 !important;
   }
@@ -88,38 +88,25 @@ customCss.innerHTML = `
   .attachment_group {
     max-width: none !important;
   }
+  
+  button#channel_title {
+    font-weight: 100;
+  }
 `;
 
 var x = document.querySelector('#customCss');
 if (x === null || typeof x === 'undefined') {
   document.getElementsByTagName('head').item(0).appendChild(customCss);
 }
-/*else {
-  x.parentNode.removeChild(x);
-}*/
 
 window.onkeydown = function(event) {
   if((event.ctrlKey && event.keyCode == 220) && ( !event.shiftKey )) {
     if (document.getElementsByClassName('client_channels_list_container')[0].style.display !== 'none'){
       // Hide
-      console.log('Hide');
-      // document.getElementById('footer').style.left = '0';
-      // document.getElementById('messages_container').style['margin-left'] = '0';
-      // document.getElementById('col_channels_bg').style.display = 'none';
-      // document.getElementById('col_channels_overlay').style.display = 'none';
-      // document.getElementById('col_channels').style.display = 'none';
-      // document.getElementById('team_menu').style.display = 'none';
-      // document.getElementsByClassName('channel_header')[0].style['margin-left'] = '0';
+      // console.log('Hide');
       document.getElementsByClassName('client_channels_list_container')[0].style.display = 'none';
     } else {
-      console.log('Show');
-      // document.getElementById('footer').style.left = '220px';
-      // document.getElementById('messages_container').style['margin-left'] = '220px';
-      // document.getElementById('col_channels_bg').style.display = '';
-      // document.getElementById('col_channels_overlay').style.display = '';
-      // document.getElementById('col_channels').style.display = '';
-      // document.getElementById('team_menu').style.display = '';
-      // document.getElementsByClassName('channel_header')[0].style['margin-left'] = ''
+      // console.log('Show');
       document.getElementsByClassName('client_channels_list_container')[0].style.display = '';
     }
   }
