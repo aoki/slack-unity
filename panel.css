@@ -1,0 +1,6 @@
+.StoplightContainer, .ScrollableArea, .TeamSelector-addArea {
+  background-color: white !important;
+}
+.TeamSidebar-addArea {
+  background: transparent !important;
+}
